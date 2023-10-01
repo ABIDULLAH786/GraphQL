@@ -33,6 +33,7 @@ export const typeDefs = `#graphql
     # The "Query" type is special: it lists all of the available queries that
     # clients can execute, along with the return type for each. In this
     # case, the "games, reviews and authors" query returns an array of zero or more Games, Reviews and Authors (defined above).
+    # https://www.apollographql.com/docs/apollo-server/schema/schema#the-mutation-type
 
     type Query {
         games: [Game]
@@ -43,5 +44,22 @@ export const typeDefs = `#graphql
 
         authors: [Author]
         author(id: ID!): Author
+    }
+    # The Mutation type is similar in structure and purpose to the Query type. 
+    # Whereas the Query type defines entry points for read operations, 
+    # the Mutation type defines entry points for write operations.
+    # https://www.apollographql.com/docs/apollo-server/schema/schema#the-mutation-type
+
+    type Mutation {
+        addGame(gameObj: AddGameInput!): Game,
+        deleteGame(game_id: ID!): [Game]
+    }
+
+    # Input types are special object types that allow you to provide hierarchical data 
+    # as arguments to fields (as opposed to providing only flat scalar arguments).
+
+    input AddGameInput{
+        title:String!, 
+        platform:[String!]!
     }
 `;
