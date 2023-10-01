@@ -53,13 +53,18 @@ export const typeDefs = `#graphql
     type Mutation {
         addGame(gameObj: AddGameInput!): Game,
         deleteGame(game_id: ID!): [Game]
+        updateGame(id: ID!, edits: EditGameInput): Game
     }
 
     # Input types are special object types that allow you to provide hierarchical data 
     # as arguments to fields (as opposed to providing only flat scalar arguments).
 
     input AddGameInput{
-        title:String!, 
+        title:String, 
         platform:[String!]!
+    }
+    input EditGameInput{
+        title:String, 
+        platform:[String!]
     }
 `;
